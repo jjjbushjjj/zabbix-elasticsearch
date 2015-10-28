@@ -1,13 +1,15 @@
 # zabbix-elasticsearch
-Elasticsearch monitoring loadable module for zabbix agent
+==============
 
-How to install:
+Elasticsearch monitoring. Loadable module for zabbix agent
+
+## How to install:
 
 1. Install on all nodes in your elasticsearch cluster and configure zabbix agents 
 See https://github.com/vulogov/zlm-python for instructions and sources. 
    Many thanks to Mr. vulogov for this module
 
-2. Put zbx_el.py in pymodules
+2. Put `zbx_el.py` in pymodules
 Notes:
         You will need some non standart python modules to install
         * http://elasticsearch-py.readthedocs.org
@@ -16,12 +18,12 @@ Notes:
 How to use:
 
 module receives 2 parameters
-1 - (cluster|health|node) Indicates what stats we are looking in
-2 - (metric) Metric we are looking for (see Example).
+* `(cluster|health|node)` Indicates what stats we are looking in
+* `metric` Metric we are looking for (see Example).
 
 Example
   Look at output of general cluster stats
-
+```
   {
    "cluster_name": "bigbadcluster", 
    "timestamp": 1446029160604, 
@@ -52,23 +54,24 @@ Example
       "process": {
 
       etc...
-
-    If we want get value for disk_reads, we could pass this parameter as metric to program
-    nodes.fs.disk_reads or just cluster_name to get cluster name.
+```
+If we want get value for `disk_reads`, we could pass this parameter as `metric` to program
+`nodes.fs.disk_reads` or just `cluster_name` to get cluster name.
 
 
 Create new template for your el nodes
 Add items,triggers,etc (see Zabbix documentation how to do this)
 
 Item keys should look like:
-py["zbx_el","cluster","nodes.fs.total_in_bytes"]
-py["zbx_el","health","status"]
+
+* `py["zbx_el","cluster","nodes.fs.total_in_bytes"]`
+* `py["zbx_el","health","status"]`
 
 I don't provide template because I simply don't have it
 
 While constructing your items you can test them before putting into template
 Like this:
-    zabbix_get -s <monitored host> -k py["zbx_el","cluster","nodes.fs.total_in_bytes"]
+*  `zabbix_get -s <monitored host> -k py["zbx_el","cluster","nodes.fs.total_in_bytes"]`
 
       
 

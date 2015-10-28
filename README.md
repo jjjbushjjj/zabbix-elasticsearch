@@ -15,7 +15,7 @@ Notes:
         * http://elasticsearch-py.readthedocs.org
         Great module for dealing with elasticsearch from python 
 
-How to use:
+## How to use:
 
 module receives 2 parameters
 * `(cluster|health|node)` Indicates what stats we are looking in
